@@ -44,7 +44,7 @@ def save_price_model(add_price):
         db.session.add(create_price)
         db.session.commit()
         db.session.close()
-        return create_price
+        return dict(Successful="Data Added Successfully")
     except:
         return dict(Unsuccessful="Sever is not responding")
 
@@ -57,6 +57,7 @@ def showprice():
 def add_price():
     if request.method == 'POST':
         add_data = request.get_json(force=True)
+        print(add_data)
         try:
             return jsonify(save_price_model(add_data))
         except Exception:
